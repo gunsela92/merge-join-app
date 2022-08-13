@@ -5,13 +5,15 @@ import {Button} from "@chakra-ui/react";
 import CustomModal from "../Modal";
 import TeamSpeakImg from "../../assets/icons/TeamSpeakBackgroundPic.png"
 import FivemImg from "../../assets/icons/FivemLogo.png"
-import {PanelContainer, LeftPanelContainer, RightPanelContainer, FivemContainer, TeamSpeakContainer} from "./style";
+import UpdateImg from "../../assets/icons/UpdateImg.jpg"
+import {PanelContainer, LeftPanelContainer, RightPanelContainer, DownPanelContainer, FivemContainer, TeamSpeakContainer, UpdateContainer} from "./style";
 
 const HomePageButtons = () => {
     const [data, setData] = useState({teamspeak: "", fivem: ""});
     const [errorPopup, setErrorPopup] = useState({show: false, message: "", appName: null});
     const [successPopup, setSuccessPopup] = useState({show: false, appName: ""});
     const [popupAction, setPopupAction] = useState(null);
+    const [updates, setUpdates] = useState([]);
 
     const fetchServerData = async () => {
         try {
@@ -41,6 +43,21 @@ const HomePageButtons = () => {
         );
     }
 
+    const PatchNotes = async () => {
+        try {
+            const res = await axios.get("https://apiv1.mergeroleplay.com/tracer/announce");
+            if (res?.data) {
+                console.log(res?.data)
+                setUpdates([res.data])
+                {updates.map((val, key) => {
+
+                })}
+            }
+        } catch (e) {
+            return e;
+        }
+    }
+
     const closePopups = () => {
         setErrorPopup({show: false, message: "", appName: null});
         setSuccessPopup({show: false, appName: ""});
@@ -59,14 +76,16 @@ const HomePageButtons = () => {
 
     return (
         <PanelContainer>
-            <LeftPanelContainer
-                onClick={() => redirect(data.teamspeak, "teamspeak")}>
-              <TeamSpeakContainer src={TeamSpeakImg}/>
+            <LeftPanelContainer>
+              <TeamSpeakContainer src={TeamSpeakImg} onClick={() => redirect(data.teamspeak, "teamspeak")}/>
             </LeftPanelContainer>
-            <RightPanelContainer
-                onClick={() => redirect(data.fivem, "fivem")}>
-                <FivemContainer src={FivemImg}/>
+            <DownPanelContainer>
+                <UpdateContainer src={UpdateImg} onClick={PatchNotes}/>
+            </DownPanelContainer>
+            <RightPanelContainer>
+                <FivemContainer src={FivemImg} onClick={() => redirect(data.fivem, "fivem")}/>
             </RightPanelContainer>
+
             <CustomModal title={"Uyarı"} isOpen={errorPopup.show} onClose={closePopups}
                          onAction={() => errorPopup.appName ? redirectToExternalPage(errorPopup.appName) : null}
                          actionText={errorPopup.appName && "Yükle"}>
@@ -75,5 +94,7 @@ const HomePageButtons = () => {
         </PanelContainer>
     );
 };
+
+
 
 export default HomePageButtons;
