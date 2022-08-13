@@ -28,7 +28,7 @@ const CustomModal = ({title, isOpen, onClose, children, onAction, actionText}) =
             <Button colorScheme='blue' mr={3} onClick={onClose}>
               Kapat
             </Button>
-            {onAction && (
+            {onAction && actionText && (
                 <Button colorScheme='teal' variant='outline' onClick={handleActionButton}>{actionText}</Button>
             )}
           </ModalFooter>

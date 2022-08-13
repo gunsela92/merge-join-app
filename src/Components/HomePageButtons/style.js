@@ -1,18 +1,31 @@
 import styled from "styled-components";
 import MergeRP from "../../assets/icons/MergeBackgroundIcon.jpg"
 
-export const PanelContainer = styled.div`
+export const AppContainer = styled.div`
   height: 100vh;
   width: 100vw;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  position: relative;
   background-image: url(${MergeRP});
   background-position: center;
   background-size: cover;
-  
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: normal;
+`;
+
+export const PanelContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 0 10%;
+  padding: 150px 0 0;
   @media only screen and (max-width: 900px) {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    height: 70%;
   }
 `;
 
@@ -37,6 +50,11 @@ export const TeamSpeakContainer = styled.img`
       animation-iteration-count: infinite;
       opacity: 0.7;
     };
+
+  @media only screen and (max-width: 900px) {
+    max-height: 150px;
+    max-width: 150px;
+  }
   
 
     @keyframes shake {
@@ -76,6 +94,12 @@ export const FivemContainer = styled.img `
       animation-iteration-count: infinite;
       opacity: 0.7;
     }
+
+  @media only screen and (max-width: 900px) {
+    max-height: 150px;
+    max-width: 150px;
+  }
+  
     @keyframes shake {
       0% { transform: translate(1px, 1px) rotate(0deg); }
       10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -92,8 +116,6 @@ export const FivemContainer = styled.img `
 `;
 
 export const DownPanelContainer = styled.div `
-  height: 100%;
-  width: 100%;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -113,6 +135,11 @@ export const UpdateContainer = styled.img `
       animation-iteration-count: infinite;
       opacity: 0.7;
     }
+
+  @media only screen and (max-width: 900px) {
+    max-height: 150px;
+    max-width: 150px;
+  }
     
     @keyframes shake {
       0% { transform: translate(1px, 1px) rotate(0deg); }
