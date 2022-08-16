@@ -4,7 +4,7 @@ import customProtocolVerify from "custom-protocol-detection";
 import CustomModal from "../Modal";
 import TeamSpeakImg from "../../assets/icons/TeamSpeakBackgroundPic.png"
 import FivemImg from "../../assets/icons/FivemLogo.png"
-import UpdateImg from "../../assets/icons/UpdateImg.jpg"
+
 import {
   PanelContainer,
   LeftPanelContainer,
@@ -12,21 +12,21 @@ import {
   DownPanelContainer,
   FivemContainer,
   TeamSpeakContainer,
-  UpdateContainer, AppContainer
+  AppContainer,
 } from "./style";
+
+import HomePagePatchNotes from "../HomePagePatchNotes";
 
 const HomePageButtons = () => {
   const [data, setData] = useState({teamspeak: "", fivem: ""});
   const [errorPopup, setErrorPopup] = useState({show: false, message: "", appName: null});
   const [successPopup, setSuccessPopup] = useState({show: false, appName: ""});
   const [popupAction, setPopupAction] = useState(null);
-  const [updates, setUpdates] = useState([]);
 
   const fetchServerData = async () => {
     try {
       const res = await axios.post("https://apiv1.mergeroleplay.com/tracer/getserverinfo");
       if (res?.data) {
-        console.log(res?.data)
         setData(res.data);
       }
     } catch (e) {
@@ -36,31 +36,18 @@ const HomePageButtons = () => {
 
   useEffect(() => {
     fetchServerData();
-    PatchNotes();
   }, []);
 
   const redirect = (url, appName) => {
     customProtocolVerify(url, (res) => {
-          setErrorPopup({show: true, message: "Uygulama bulunamadı. Yüklemek ister misiniz ?", appName: appName});
-        },
-        (res) => {
-          setSuccessPopup({show: true, appName: appName});
-        }, () => {
-          setErrorPopup({show: true, message: "Kullanmakta olduğunuz tarayıcı desteklenmiyor.", appName: null});
-        }, 500
+        setErrorPopup({show: true, message: "Uygulama bulunamadı. Yüklemek ister misiniz ?", appName: appName});
+      },
+      (res) => {
+        setSuccessPopup({show: true, appName: appName});
+      }, () => {
+        setErrorPopup({show: true, message: "Kullanmakta olduğunuz tarayıcı desteklenmiyor.", appName: null});
+      }, 500
     );
-  }
-
-  const PatchNotes = async () => {
-    try {
-      const res = await axios.get("https://apiv1.mergeroleplay.com/tracer/announce");
-      if (res?.data) {
-        console.log(res?.data)
-        setUpdates(res.data)
-      }
-    } catch (e) {
-      return e;
-    }
   }
 
   const closePopups = () => {
@@ -78,26 +65,25 @@ const HomePageButtons = () => {
       }
     }
   }
-
   return (
-      <AppContainer>
-        <PanelContainer>
-          <LeftPanelContainer>
-            <TeamSpeakContainer src={TeamSpeakImg} onClick={() => redirect(data.teamspeak, "teamspeak")}/>
-          </LeftPanelContainer>
-          <RightPanelContainer>
-            <FivemContainer src={FivemImg} onClick={() => redirect(data.fivem, "fivem")}/>
-          </RightPanelContainer>
-          <CustomModal title={"Uyarı"} isOpen={errorPopup.show} onClose={closePopups}
-                       onAction={() => errorPopup.appName ? redirectToExternalPage(errorPopup.appName) : null}
-                       actionText={errorPopup.appName && "Yükle"}>
-            <div>{errorPopup.message}</div>
-          </CustomModal>
-        </PanelContainer>
-        <DownPanelContainer>
-          <UpdateContainer src={UpdateImg}/>
-        </DownPanelContainer>
-      </AppContainer>
+    <AppContainer>
+      <PanelContainer>
+        <LeftPanelContainer>
+          <TeamSpeakContainer src={TeamSpeakImg} onClick={() => redirect(data.teamspeak, "teamspeak")}/>
+        </LeftPanelContainer>
+        <RightPanelContainer>
+          <FivemContainer src={FivemImg} onClick={() => redirect(data.fivem, "fivem")}/>
+        </RightPanelContainer>
+        <CustomModal title={"Uyarı"} isOpen={errorPopup.show} onClose={closePopups}
+                     onAction={() => errorPopup.appName ? redirectToExternalPage(errorPopup.appName) : null}
+                     actionText={errorPopup.appName && "Yükle"}>
+          <div>{errorPopup.message}</div>
+        </CustomModal>
+      </PanelContainer>
+      <DownPanelContainer>
+        <HomePagePatchNotes/>
+      </DownPanelContainer>
+    </AppContainer>
   );
 };
 

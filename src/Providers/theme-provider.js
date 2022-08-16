@@ -10,6 +10,21 @@ const MainContainer = styled.div`
   height: 100vh;
   background: ${({ theme }) => theme.backgrounds.mainBackground};
   transition: all .5s;
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #035487 #ffffff;
+  }
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 5px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #035487;
+    border-radius: 10px;
+  }
 `;
 
 const theme = {
@@ -21,6 +36,7 @@ const theme = {
     black: "#000000",
     noBgTextColor: "#000000",
     borderColor: "rgba(210,210,210,0.41)",
+    orangeColor: "#FF9A3A",
     successColor: "#28A745",
     dangerColor: "#DC3545",
     warningColor: "#E0A800",
@@ -36,6 +52,7 @@ const theme = {
     wantedBackground: "#1A2540",
     inputBackground: "#091e2a",
     lightBackground: "#23405E",
+    greyBackground: "#303030",
   },
   borderColors: {
     grayBorder: "#b4b4b4",
