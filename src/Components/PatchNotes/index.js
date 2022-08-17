@@ -6,56 +6,41 @@ import MergeRPIcon from "../../assets/icons/MergeRp.png"
 import {formatDate} from "../../Utils/dateFormatter";
 
 const PatchNotes = () => {
-  const [post, setPost] = useState("");
-  const [inno, setInno] = useState([]);
+  const [inno, setInno] = useState({});
   let {patchId} = useParams();
 
-  const fuc = () => {
-    setPost(patchId)
-  }
-
-  useEffect(() => {
-    fuc()
-    GetUpdate()
-  }, []);
-
-  const GetUpdate = async () => {
+  const getUpdate = async () => {
     try {
-      const res = await axios.get("https://apiv1.mergeroleplay.com/tracer/announce");
-      if (res?.data) {
-        console.log("eşleşti")
-        setInno(res?.data)
-        console.log(res?.data)
-      } else {
-        console.log("başarısız")
+      const res = await axios.post("https://apiv1.mergeroleplay.com/tracer/getannouncefromid", {id: parseInt(patchId)});
+      if (res?.data && res?.data?.length > 0) {
+        setInno(res?.data[0])
       }
     } catch (e) {
       return e;
     }
   }
 
+  useEffect(() => {
+    getUpdate()
+  }, []);
+
   return (
-    <PatchContainer>
-      {inno.map(val => (
+      <PatchContainer>
         <div>
-          {val?.id == patchId ?
-            <NotesContainer>
-              <LogoContainer src={MergeRPIcon}/>
-              <IDContainer>
-                Güncelleme {val.id}
-              </IDContainer>
-              <NewsContainer>
-                {val.yenilik}
-              </NewsContainer>
-              <TimeContainer>
-                {formatDate(val.time, "noHour")}
-              </TimeContainer>
-            </NotesContainer>
-            :
-            ""}
+          <NotesContainer>
+            <LogoContainer src={MergeRPIcon}/>
+            <IDContainer>
+              Güncelleme {inno?.id}
+            </IDContainer>
+            <NewsContainer>
+              {inno?.yenilik}
+            </NewsContainer>
+            <TimeContainer>
+              {formatDate(inno?.time, "noHour")}
+            </TimeContainer>
+          </NotesContainer>
         </div>
-      ))}
-    </PatchContainer>
+      </PatchContainer>
   );
 };
 

@@ -1,24 +1,31 @@
 import styled from "styled-components";
+import {Tabs, TabPanel} from '@chakra-ui/react'
 
-export const NotesWrapper = styled.div`
-  width: calc(100% - 100px);
-  margin: 0 auto;
-  display: block;
+export const NotesTabs = styled(Tabs)`
+  width: 100%;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const NotesWrapper = styled(TabPanel)`
+  width: 100%;
+  display: grid;
   grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
   justify-items: center;
   align-items: center;
-  padding: 20px 100px;
+  padding: 20px 0 !important;
   box-sizing: border-box;
-  @media only screen and (max-width: 1800px) {
-    grid-template-columns: repeat(5, 1fr);
-  }
+
   @media only screen and (max-width: 1600px) {
     grid-template-columns: repeat(4, 1fr);
   }
   @media only screen and (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
   }
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 1000px) {
     grid-template-columns: repeat(2, 1fr);
   }
   @media only screen and (max-width: 600px) {
@@ -34,7 +41,6 @@ export const NotesContainer = styled.div`
   position: relative;
   display: block;
   float: left;
-  margin-left: 10px;
   border-radius: 10px;
   overflow: hidden;
   transition: all .3s;
