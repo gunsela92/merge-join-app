@@ -60,7 +60,7 @@ export const NotesPictureContainer = styled.img`
 `;
 
 export const NotesTimeContainer = styled.div`
-  height: 10%;
+  height: 25px;
   text-align: left;
   color: ${({theme}) => theme.colors.orangeColor};
   padding: 5px 10px 10px;
@@ -69,7 +69,7 @@ export const NotesTimeContainer = styled.div`
 `;
 
 export const NotesIdContainer = styled.div`
-  height: 10%;
+  height: 100px;
   text-align: left;
   padding: 5px 10px 10px;
   font-family: ${({theme}) => theme.fonts.regular};

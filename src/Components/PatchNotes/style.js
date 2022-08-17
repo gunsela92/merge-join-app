@@ -2,8 +2,8 @@ import styled from "styled-components";
 import MergeRPBackground from "../../assets/icons/NewsBackGround.png";
 
 export const PatchContainer = styled.div`
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   position: relative;
   background-image: url(${MergeRPBackground});
   background-position: center;
@@ -21,7 +21,7 @@ export const NotesContainer = styled.div`
 
 export const LogoContainer = styled.img`
   margin: auto;
-  height: 35vh;
+  height: 300px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -34,7 +34,7 @@ export const LogoContainer = styled.img`
 `;
 
 export const IDContainer = styled.div`
-  height: 5vh;
+  height: 50px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -43,8 +43,8 @@ export const IDContainer = styled.div`
 `;
 
 export const NewsContainer = styled.div`
-  height: 20vh;
-  width: 40vw;
+  height: 200px;
+  width: 600px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -54,10 +54,10 @@ export const NewsContainer = styled.div`
 
 export const TimeContainer = styled.div`
   border-top: 1px solid white;
-  height: 5vh;
+  height: 50px;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   font-family: ${({theme}) => theme.fonts.regular};
 `;

@@ -1,13 +1,23 @@
 import React, {useState, useEffect} from 'react';
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
-import {IDContainer, LogoContainer, NewsContainer, NotesContainer, PatchContainer, TimeContainer} from "./style";
+import {
+  BtnContainer,
+  IDContainer,
+  LogoContainer,
+  NewsContainer,
+  NotesContainer,
+  PatchContainer,
+  TimeContainer
+} from "./style";
 import MergeRPIcon from "../../assets/icons/MergeRp.png"
 import {formatDate} from "../../Utils/dateFormatter";
+import { Button, ButtonGroup } from '@chakra-ui/react'
 
 const PatchNotes = () => {
   const [inno, setInno] = useState({});
   let {patchId} = useParams();
+  const navigate = useNavigate();
 
   const getUpdate = async () => {
     try {
@@ -36,6 +46,7 @@ const PatchNotes = () => {
               {inno?.yenilik}
             </NewsContainer>
             <TimeContainer>
+              <Button onClick={(e) => navigate("/")} colorScheme='white' variant='ghost' >Geri</Button>
               {formatDate(inno?.time, "noHour")}
             </TimeContainer>
           </NotesContainer>

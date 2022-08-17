@@ -2,8 +2,8 @@ import styled from "styled-components";
 import MergeRP from "../../assets/icons/MergeBackgroundIcon.jpg"
 
 export const AppContainer = styled.div`
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   position: relative;
   background-image: url(${MergeRP});
   background-position: center;
@@ -56,8 +56,6 @@ export const TeamSpeakContainer = styled.img`
     max-height: 150px;
     max-width: 150px;
   }
-
-
   @keyframes shake {
     0% {
       transform: translate(1px, 1px) rotate(0deg);
@@ -97,7 +95,6 @@ export const TeamSpeakContainer = styled.img`
   }
 `;
 
-
 export const RightPanelContainer = styled.div`
   height: 100%;
   width: 100%;
@@ -105,8 +102,8 @@ export const RightPanelContainer = styled.div`
   justify-content: center;
   text-align: center;
   align-items: center;
-
 `;
+
 export const FivemContainer = styled.img`
   height: 100%;
   width: 100%;
@@ -114,8 +111,6 @@ export const FivemContainer = styled.img`
   max-width: 200px;
   border-radius: 50%;
   object-fit: cover;
-
-
   &:hover {
     animation: shake 0.5s;
     animation-iteration-count: infinite;

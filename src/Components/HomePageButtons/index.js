@@ -87,5 +87,4 @@ const HomePageButtons = () => {
   );
 };
 
-
 export default HomePageButtons;
