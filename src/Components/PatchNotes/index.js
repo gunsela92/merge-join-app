@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {
-  BtnContainer,
   IDContainer,
   LogoContainer,
   NewsContainer,
@@ -12,7 +11,7 @@ import {
 } from "./style";
 import MergeRPIcon from "../../assets/icons/MergeRp.png"
 import {formatDate} from "../../Utils/dateFormatter";
-import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
 
 const PatchNotes = () => {
   const [inno, setInno] = useState({});
