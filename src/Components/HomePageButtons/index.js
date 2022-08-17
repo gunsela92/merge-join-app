@@ -21,7 +21,6 @@ const HomePageButtons = () => {
   const [data, setData] = useState({teamspeak: "", fivem: ""});
   const [errorPopup, setErrorPopup] = useState({show: false, message: "", appName: null});
   const [successPopup, setSuccessPopup] = useState({show: false, appName: ""});
-  const [popupAction, setPopupAction] = useState(null);
 
   const fetchServerData = async () => {
     try {
@@ -43,7 +42,7 @@ const HomePageButtons = () => {
         setErrorPopup({show: true, message: "Uygulama bulunamadı. Yüklemek ister misiniz ?", appName: appName});
       },
       (res) => {
-        setSuccessPopup({show: true, appName: appName});
+        setSuccessPopup({show: true, message: "Uygulama başlatılıyor.", appName: appName});
       }, () => {
         setErrorPopup({show: true, message: "Kullanmakta olduğunuz tarayıcı desteklenmiyor.", appName: null});
       }, 500
@@ -53,7 +52,6 @@ const HomePageButtons = () => {
   const closePopups = () => {
     setErrorPopup({show: false, message: "", appName: null});
     setSuccessPopup({show: false, appName: ""});
-    setPopupAction(null);
   }
 
   const redirectToExternalPage = (appName) => {
@@ -78,6 +76,9 @@ const HomePageButtons = () => {
                      onAction={() => errorPopup.appName ? redirectToExternalPage(errorPopup.appName) : null}
                      actionText={errorPopup.appName && "Yükle"}>
           <div>{errorPopup.message}</div>
+        </CustomModal>
+        <CustomModal title={"Uyarı"} isOpen={successPopup.show} onClose={closePopups}>
+          <div>{successPopup.message}</div>
         </CustomModal>
       </PanelContainer>
       <DownPanelContainer>

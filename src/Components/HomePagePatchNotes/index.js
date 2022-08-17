@@ -4,13 +4,13 @@ import {useNavigate} from "react-router-dom";
 import {
   NotesContainer,
   NotesIdContainer,
-  NotesPictureContainer,
+  NotesPictureContainer, NotesTabList,
   NotesTabs,
   NotesTimeContainer,
   NotesWrapper
 } from "./style";
 import f1 from "../../assets/icons/f1example.jpg"
-import {Tab, TabList, TabPanels} from '@chakra-ui/react'
+import {Tab, TabPanels} from '@chakra-ui/react'
 import {formatDate} from "../../Utils/dateFormatter";
 
 const HomePagePatchNotes = () => {
@@ -44,11 +44,11 @@ const HomePagePatchNotes = () => {
       const newList = updates?.filter(item => item?.isCompleted === searchItem);
       return (
           <NotesTabs index={tabIndex} onChange={handleTabsChange}>
-            <TabList>
+            <NotesTabList>
               {categories?.map((category, index) => (
                   <Tab key={index}>{category}</Tab>
               ))}
-            </TabList>
+            </NotesTabList>
             <TabPanels>
               {categories?.map((category, index) => (
                   <NotesWrapper key={index}>

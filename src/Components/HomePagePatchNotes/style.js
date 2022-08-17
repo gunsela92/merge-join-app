@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Tabs, TabPanel} from '@chakra-ui/react'
+import {Tabs, TabPanel, TabList} from '@chakra-ui/react'
 
 export const NotesTabs = styled(Tabs)`
   width: 100%;
@@ -30,6 +30,16 @@ export const NotesWrapper = styled(TabPanel)`
   }
   @media only screen and (max-width: 600px) {
     grid-template-columns: repeat(1, 1fr);
+  }
+`;
+
+export const NotesTabList = styled(TabList)`
+  background-color: ${({theme}) => theme.backgrounds.wantedBackground};
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  @media only screen and (max-width: 600px) {
+    padding: 0 10px;
   }
 `;
 

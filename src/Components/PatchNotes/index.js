@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {
+  BackButton,
   IDContainer,
   LogoContainer,
   NewsContainer,
@@ -11,7 +12,6 @@ import {
 } from "./style";
 import MergeRPIcon from "../../assets/icons/MergeRp.png"
 import {formatDate} from "../../Utils/dateFormatter";
-import { Button } from '@chakra-ui/react'
 
 const PatchNotes = () => {
   const [inno, setInno] = useState({});
@@ -35,21 +35,23 @@ const PatchNotes = () => {
 
   return (
       <PatchContainer>
-        <div>
           <NotesContainer>
             <LogoContainer src={MergeRPIcon}/>
             <IDContainer>
-              Güncelleme {inno?.id}
+              <span>
+                Güncelleme {inno?.id}
+              </span>
+              <span>
+                {formatDate(inno?.time, "noHour")}
+              </span>
             </IDContainer>
             <NewsContainer>
               {inno?.yenilik}
             </NewsContainer>
             <TimeContainer>
-              <Button onClick={(e) => navigate("/")} colorScheme='white' variant='ghost' >Geri</Button>
-              {formatDate(inno?.time, "noHour")}
+              <BackButton onClick={(e) => navigate("/")} variant='ghost'>Geri</BackButton>
             </TimeContainer>
           </NotesContainer>
-        </div>
       </PatchContainer>
   );
 };

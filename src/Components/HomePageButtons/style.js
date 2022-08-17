@@ -17,15 +17,16 @@ export const AppContainer = styled.div`
 export const PanelContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin: 0 0 5%;
-  padding: 80px 0 0;
+  margin: 0 0 50px;
+  padding-top: 40px;
   @media only screen and (max-width: 900px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0;
-    height: 70%;
+    margin: 0 0 20px;
+    padding-top: 0;
+    height: 65%;
   }
 `;
 
@@ -40,8 +41,8 @@ export const LeftPanelContainer = styled.div`
 export const TeamSpeakContainer = styled.img`
   height: 100%;
   width: 100%;
-  max-height: 200px;
-  max-width: 200px;
+  max-height: 150px;
+  max-width: 150px;
   border-radius: 50%;
   object-fit: cover;
 
@@ -53,8 +54,8 @@ export const TeamSpeakContainer = styled.img`
 ;
 
   @media only screen and (max-width: 900px) {
-    max-height: 150px;
-    max-width: 150px;
+    max-height: 100px;
+    max-width: 100px;
   }
   @keyframes shake {
     0% {
@@ -107,10 +108,11 @@ export const RightPanelContainer = styled.div`
 export const FivemContainer = styled.img`
   height: 100%;
   width: 100%;
-  max-height: 200px;
-  max-width: 200px;
+  max-height: 150px;
+  max-width: 150px;
   border-radius: 50%;
   object-fit: cover;
+
   &:hover {
     animation: shake 0.5s;
     animation-iteration-count: infinite;
@@ -118,8 +120,8 @@ export const FivemContainer = styled.img`
   }
 
   @media only screen and (max-width: 900px) {
-    max-height: 150px;
-    max-width: 150px;
+    max-height: 100px;
+    max-width: 100px;
   }
 
   @keyframes shake {
