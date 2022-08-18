@@ -33,24 +33,26 @@ const PatchNotes = () => {
     getUpdate()
   }, []);
 
+  function createMarkup(text) {
+    return {__html: text};
+  }
+
   return (
       <PatchContainer>
-          <NotesContainer>
-            <LogoContainer src={MergeRPIcon}/>
-            <IDContainer>
+        <NotesContainer>
+          <LogoContainer src={MergeRPIcon}/>
+          <IDContainer>
               <span>
                 Güncelleme {inno?.id}
               </span>
-              <span>
+            <span>
                 {formatDate(inno?.time, "noHour")}
               </span>
-            </IDContainer>
-            <NewsContainer>
-              {inno?.yenilik}
-            </NewsContainer>
-            <TimeContainer>
-              <BackButton onClick={(e) => navigate("/")} variant='ghost'>Geri</BackButton>
-            </TimeContainer>
+          </IDContainer>
+          <NewsContainer dangerouslySetInnerHTML={createMarkup(inno?.yenilik)}/>
+          <TimeContainer>
+            <BackButton onClick={(e) => navigate("/")} variant='ghost'>Geri</BackButton>
+          </TimeContainer>
           </NotesContainer>
       </PatchContainer>
   );
