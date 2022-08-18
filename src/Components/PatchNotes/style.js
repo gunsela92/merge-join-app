@@ -20,6 +20,8 @@ export const NotesContainer = styled.div`
   border: 1px solid white;
   backdrop-filter: blur(5px);
   overflow: hidden;
+  width: 100%;
+  max-width: 453px;
 `;
 
 export const LogoContainer = styled.img`
