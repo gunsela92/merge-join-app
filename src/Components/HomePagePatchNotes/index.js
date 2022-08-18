@@ -3,7 +3,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {
   NotesContainer,
-  NotesIdContainer,
+  NotesIdContainer, NotesNotFinished,
   NotesPictureContainer, NotesTabList,
   NotesTabs,
   NotesTimeContainer,
@@ -69,7 +69,8 @@ const HomePagePatchNotes = () => {
                         <NotesContainer key={index}
                                         onClick={(e) => update?.isCompleted ? navigate(`/patchnotes/${update?.id}`) : null}>
                           <NotesPictureContainer src={getImage()}/>
-                          <NotesTimeContainer>{formatDate(update.time, "noHour")}</NotesTimeContainer>
+                          <NotesTimeContainer>{formatDate(update.time, "noHour")}
+                            <NotesNotFinished>{!update?.isCompleted ? "Devam ediyor" : ""}</NotesNotFinished></NotesTimeContainer>
                           <NotesIdContainer>{searchItem === "NEW" ? "Güncelleme " : "Bakım "}Notu
                             - {update.id}</NotesIdContainer>
                         </NotesContainer>

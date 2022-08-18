@@ -74,10 +74,17 @@ export const NotesTimeContainer = styled.div`
   height: 40px;
   text-align: left;
   color: ${({theme}) => theme.colors.orangeColor};
-  padding: 5px 10px 10px;
   box-sizing: border-box;
   font-family: ${({theme}) => theme.fonts.bold};
   font-size: ${({theme}) => theme.fontSizes.extraLarge};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+`;
+
+export const NotesNotFinished = styled.span`
+  font-size: ${({theme}) => theme.fontSizes.small};
 `;
 
 export const NotesIdContainer = styled.div`
