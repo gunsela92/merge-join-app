@@ -9,14 +9,27 @@ import {
   NotesTimeContainer,
   NotesWrapper
 } from "./style";
-import f1 from "../../assets/icons/f1example.jpg"
 import {Tab, TabPanels} from '@chakra-ui/react'
 import {formatDate} from "../../Utils/dateFormatter";
+import Image1 from "../../assets/icons/1.jpg";
+import Image2 from "../../assets/icons/2.jpg";
+import Image3 from "../../assets/icons/3.jpg";
 
 const HomePagePatchNotes = () => {
   const [updates, setUpdates] = useState([]);
   const navigate = useNavigate();
-  const [tabIndex, setTabIndex] = useState(0)
+  const [tabIndex, setTabIndex] = useState(0);
+
+  const getImage = () => {
+    const random = Math.random() * (4 - 1) + 1;
+    if (random < 2 && random > 1) {
+      return Image1;
+    } else if (random < 3 && random > 2) {
+      return Image2;
+    } else {
+      return Image3;
+    }
+  }
 
   useEffect(() => {
     PatchNotes();
@@ -40,8 +53,8 @@ const HomePagePatchNotes = () => {
   return useMemo(() => {
     if (updates?.length > 0) {
       const categories = [...new Set(updates?.map(item => item?.isCompleted ? "Yenilikler" : "Bakım Notları").flat())] || [];
-      const searchItem = tabIndex === 0 ? 1 : 0;
-      const newList = updates?.filter(item => item?.isCompleted === searchItem);
+      const searchItem = tabIndex === 0 ? "NEW" : "PATCH";
+      const newList = updates?.filter(item => item?.category === searchItem);
       return (
           <NotesTabs index={tabIndex} onChange={handleTabsChange}>
             <NotesTabList>
@@ -55,9 +68,10 @@ const HomePagePatchNotes = () => {
                     {newList?.map((update, index) => (
                         <NotesContainer key={index}
                                         onClick={(e) => update?.isCompleted ? navigate(`/patchnotes/${update?.id}`) : null}>
-                          <NotesPictureContainer src={f1}/>
+                          <NotesPictureContainer src={getImage()}/>
                           <NotesTimeContainer>{formatDate(update.time, "noHour")}</NotesTimeContainer>
-                          <NotesIdContainer>Yenilik Notu {update.id}</NotesIdContainer>
+                          <NotesIdContainer>{searchItem === "NEW" ? "Güncelleme " : "Bakım "}Notu
+                            - {update.id}</NotesIdContainer>
                         </NotesContainer>
                     ))}
                   </NotesWrapper>

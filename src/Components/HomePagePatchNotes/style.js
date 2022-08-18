@@ -12,23 +12,21 @@ export const NotesTabs = styled(Tabs)`
 export const NotesWrapper = styled(TabPanel)`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px;
   justify-items: center;
   align-items: center;
   padding: 20px 0 !important;
   box-sizing: border-box;
+  cursor: pointer;
 
-  @media only screen and (max-width: 1600px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  @media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: 1400px) {
     grid-template-columns: repeat(3, 1fr);
   }
   @media only screen and (max-width: 1000px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 750px) {
     grid-template-columns: repeat(1, 1fr);
   }
 `;
@@ -44,38 +42,42 @@ export const NotesTabList = styled(TabList)`
 `;
 
 export const NotesContainer = styled.div`
-  background: ${({theme}) => theme.backgrounds.greyBackground};
-  width: 300px;
-  height: 270px;
+  background: ${({theme}) => theme.backgrounds.inputBackground};
+  width: 100%;
+  max-width: 400px;
+  max-height: 520px;
+  height: 100%;
   margin-bottom: 10px;
   position: relative;
   display: block;
   float: left;
-  border-radius: 10px;
+  border-radius: 5px;
   overflow: hidden;
   transition: all .3s;
+
   &:hover {
     transform: translate(0px, -10px);
     transition: all .3s;
-    -webkit-box-shadow: 0px 13px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 13px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 13px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 13px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 13px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 13px 5px 0px rgba(0, 0, 0, 0.75);
   }
 `;
 
 export const NotesPictureContainer = styled.img`
   margin: auto;
-  height: 170px;
-  width: 300px;
+  height: auto;
+  width: 100%;
 `;
 
 export const NotesTimeContainer = styled.div`
-  height: 25px;
+  height: 40px;
   text-align: left;
   color: ${({theme}) => theme.colors.orangeColor};
   padding: 5px 10px 10px;
   box-sizing: border-box;
-  font-family: ${({theme}) => theme.fonts.regular};
+  font-family: ${({theme}) => theme.fonts.bold};
+  font-size: ${({theme}) => theme.fontSizes.extraLarge};
 `;
 
 export const NotesIdContainer = styled.div`
@@ -83,5 +85,6 @@ export const NotesIdContainer = styled.div`
   text-align: left;
   padding: 5px 10px 10px;
   font-family: ${({theme}) => theme.fonts.regular};
-  font-size: ${({theme}) => theme.fontSizes.large}
+  font-size: ${({theme}) => theme.fontSizes.medium};
+  box-sizing: border-box;
 `;

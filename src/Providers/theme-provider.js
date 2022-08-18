@@ -9,7 +9,6 @@ const MainContainer = styled.div`
   width:100vw;
   height: 100vh;
   background: ${({ theme }) => theme.backgrounds.mainBackground};
-  transition: all .5s;
   * {
     scrollbar-width: auto;
     scrollbar-color: #035487 #ffffff;

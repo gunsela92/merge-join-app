@@ -2,25 +2,17 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import customProtocolVerify from "custom-protocol-detection";
 import CustomModal from "../Modal";
-import TeamSpeakImg from "../../assets/icons/TeamSpeakBackgroundPic.png"
-import FivemImg from "../../assets/icons/FivemLogo.png"
-
 import {
-  PanelContainer,
-  LeftPanelContainer,
-  RightPanelContainer,
   DownPanelContainer,
-  FivemContainer,
-  TeamSpeakContainer,
-  AppContainer,
+  AppContainer, NavBarToggle, Bar, Hamburger, Logo, MainNav, NavLi, NavLink,
 } from "./style";
-
 import HomePagePatchNotes from "../HomePagePatchNotes";
 
 const HomePageButtons = () => {
   const [data, setData] = useState({teamspeak: "", fivem: ""});
   const [errorPopup, setErrorPopup] = useState({show: false, message: "", appName: null});
   const [successPopup, setSuccessPopup] = useState({show: false, appName: ""});
+  const [displayNav, setDisplayNav] = useState("none");
 
   const fetchServerData = async () => {
     try {
@@ -38,14 +30,15 @@ const HomePageButtons = () => {
   }, []);
 
   const redirect = (url, appName) => {
+    console.log(url)
     customProtocolVerify(url, (res) => {
-        setErrorPopup({show: true, message: "Uygulama bulunamadı. Yüklemek ister misiniz ?", appName: appName});
-      },
-      (res) => {
-        setSuccessPopup({show: true, message: "Uygulama başlatılıyor.", appName: appName});
-      }, () => {
-        setErrorPopup({show: true, message: "Kullanmakta olduğunuz tarayıcı desteklenmiyor.", appName: null});
-      }, 500
+          setErrorPopup({show: true, message: "Uygulama bulunamadı. Yüklemek ister misiniz ?", appName: appName});
+        },
+        (res) => {
+          setSuccessPopup({show: true, message: "Uygulama başlatılıyor.", appName: appName});
+        }, () => {
+          setErrorPopup({show: true, message: "Kullanmakta olduğunuz tarayıcı desteklenmiyor.", appName: null});
+        }, 500
     );
   }
 
@@ -63,15 +56,37 @@ const HomePageButtons = () => {
       }
     }
   }
+
+  const toggleNavBar = () => {
+    switch (displayNav) {
+      case 'none':
+        setDisplayNav('flex');
+        break
+      case 'flex':
+        setDisplayNav('none');
+        break
+      default:
+        setDisplayNav('none');
+        return
+    }
+  }
+
   return (
-    <AppContainer>
-      <PanelContainer>
-        <LeftPanelContainer>
-          <TeamSpeakContainer src={TeamSpeakImg} onClick={() => redirect(data.teamspeak, "teamspeak")}/>
-        </LeftPanelContainer>
-        <RightPanelContainer>
-          <FivemContainer src={FivemImg} onClick={() => redirect(data.fivem, "fivem")}/>
-        </RightPanelContainer>
+      <AppContainer>
+        <Bar>
+          <NavBarToggle onClick={toggleNavBar}>
+            <Hamburger/>
+          </NavBarToggle>
+          <Logo src={"https://store.mergeroleplay.com/image/catalog/xxxx.png"}/>
+          <MainNav display={displayNav}>
+            <NavLi>
+              <NavLink onClick={() => redirect(data.fivem, "fivem")}>Oyuna gir</NavLink>
+            </NavLi>
+            <NavLi>
+              <NavLink onClick={() => redirect(data.teamspeak, "teamspeak")}>Teamspeak</NavLink>
+            </NavLi>
+          </MainNav>
+        </Bar>
         <CustomModal title={"Uyarı"} isOpen={errorPopup.show} onClose={closePopups}
                      onAction={() => errorPopup.appName ? redirectToExternalPage(errorPopup.appName) : null}
                      actionText={errorPopup.appName && "Yükle"}>
@@ -80,11 +95,10 @@ const HomePageButtons = () => {
         <CustomModal title={"Uyarı"} isOpen={successPopup.show} onClose={closePopups}>
           <div>{successPopup.message}</div>
         </CustomModal>
-      </PanelContainer>
-      <DownPanelContainer>
-        <HomePagePatchNotes/>
-      </DownPanelContainer>
-    </AppContainer>
+        <DownPanelContainer>
+          <HomePagePatchNotes/>
+        </DownPanelContainer>
+      </AppContainer>
   );
 };
 

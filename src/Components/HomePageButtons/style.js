@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import MergeRP from "../../assets/icons/MergeBackgroundIcon.jpg"
+import {Button} from "@chakra-ui/react";
+import {HamburgerIcon} from "@chakra-ui/icons";
 
 export const AppContainer = styled.div`
   height: 100%;
@@ -14,153 +16,6 @@ export const AppContainer = styled.div`
   align-items: normal;
 `;
 
-export const PanelContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: 0 0 50px;
-  padding-top: 40px;
-  @media only screen and (max-width: 900px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 0 20px;
-    padding-top: 0;
-    height: 65%;
-  }
-`;
-
-export const LeftPanelContainer = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-`;
-export const TeamSpeakContainer = styled.img`
-  height: 100%;
-  width: 100%;
-  max-height: 150px;
-  max-width: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-
-  &:hover {
-    animation: shake 0.5s;
-    animation-iteration-count: infinite;
-    opacity: 0.7;
-  }
-;
-
-  @media only screen and (max-width: 900px) {
-    max-height: 100px;
-    max-width: 100px;
-  }
-  @keyframes shake {
-    0% {
-      transform: translate(1px, 1px) rotate(0deg);
-    }
-    10% {
-      transform: translate(-1px, -2px) rotate(-1deg);
-    }
-    20% {
-      transform: translate(-3px, 0px) rotate(1deg);
-    }
-    30% {
-      transform: translate(3px, 2px) rotate(0deg);
-    }
-    40% {
-      transform: translate(1px, -1px) rotate(1deg);
-    }
-    50% {
-      transform: translate(-1px, 2px) rotate(-1deg);
-    }
-    60% {
-      transform: translate(-3px, 1px) rotate(0deg);
-    }
-    70% {
-      transform: translate(3px, 1px) rotate(-1deg);
-    }
-    80% {
-      transform: translate(-1px, -1px) rotate(1deg);
-    }
-    90% {
-      transform: translate(1px, 2px) rotate(0deg);
-    }
-    100% {
-      width: 450px;
-      height: 450px;
-      transform: translate(1px, -2px) rotate(-1deg);
-    }
-  }
-`;
-
-export const RightPanelContainer = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-`;
-
-export const FivemContainer = styled.img`
-  height: 100%;
-  width: 100%;
-  max-height: 150px;
-  max-width: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-
-  &:hover {
-    animation: shake 0.5s;
-    animation-iteration-count: infinite;
-    opacity: 0.7;
-  }
-
-  @media only screen and (max-width: 900px) {
-    max-height: 100px;
-    max-width: 100px;
-  }
-
-  @keyframes shake {
-    0% {
-      transform: translate(1px, 1px) rotate(0deg);
-    }
-    10% {
-      transform: translate(-1px, -2px) rotate(-1deg);
-    }
-    20% {
-      transform: translate(-3px, 0px) rotate(1deg);
-    }
-    30% {
-      transform: translate(3px, 2px) rotate(0deg);
-    }
-    40% {
-      transform: translate(1px, -1px) rotate(1deg);
-    }
-    50% {
-      transform: translate(-1px, 2px) rotate(-1deg);
-    }
-    60% {
-      transform: translate(-3px, 1px) rotate(0deg);
-    }
-    70% {
-      transform: translate(3px, 1px) rotate(-1deg);
-    }
-    80% {
-      transform: translate(-1px, -1px) rotate(1deg);
-    }
-    90% {
-      transform: translate(1px, 2px) rotate(0deg);
-    }
-    100% {
-      transform: translate(1px, -2px) rotate(-1deg);
-    }
-  }
-`;
-
 export const DownPanelContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -172,9 +27,59 @@ export const DownPanelContainer = styled.div`
   line-height: 2.5;
 `;
 
-
-
-
-
-
-
+export const Bar = styled.nav`
+  font-size: 18px;
+  background: ${({theme}) => theme.backgrounds.inputBackground};
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 10px;
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0;
+    height: 70px;
+    align-items: center;
+  }
+`
+export const MainNav = styled.ul`
+  list-style-type: none;
+  display: ${props => props.display};
+  height: ${props => props.display === "flex" ? "100vh" : "unset"};
+  flex-direction: column;
+  @media (min-width: 768px) {
+    display: flex !important;
+    margin-right: 30px;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+`
+export const NavLi = styled.li`
+  text-align: center;
+  margin: 15px auto;
+`
+export const NavLink = styled(Button)`
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  font-family: ${({theme}) => theme.fonts.regular};
+  font-size: ${({theme}) => theme.fontSizes.medium};
+  @media (min-width: 768px) {
+    margin: 0 10px;
+  }
+`
+export const Logo = styled.img`
+  display: inline-block;
+  font-size: 22px;
+  margin-left: 20px;
+`
+export const NavBarToggle = styled.span`
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 24px;
+`
+export const Hamburger = styled(HamburgerIcon)`
+  @media (min-width: 768px) {
+    display: none !important;
+  }
+`
