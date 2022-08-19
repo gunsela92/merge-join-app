@@ -52,7 +52,7 @@ const HomePagePatchNotes = () => {
 
   return useMemo(() => {
     if (updates?.length > 0) {
-      const categories = [...new Set(updates?.map(item => item?.isCompleted ? "Yenilikler" : "Bakım Notları").flat())] || [];
+      const categories = ["Yenilikler", "Bakım Notları"];
       const searchItem = tabIndex === 0 ? "NEW" : "PATCH";
       const newList = updates?.filter(item => item?.category === searchItem);
       return (
