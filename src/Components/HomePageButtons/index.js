@@ -85,6 +85,9 @@ const HomePageButtons = () => {
             <NavLi>
               <NavLink onClick={() => redirect(data.teamspeak, "teamspeak")}>Teamspeak</NavLink>
             </NavLi>
+            <NavLi>
+              <NavLink onClick={() => redirect(data.teamspeakEu, "teamspeak")}>Teamspeak (Yurtdışı)</NavLink>
+            </NavLi>
           </MainNav>
         </Bar>
         <CustomModal title={"Uyarı"} isOpen={errorPopup.show} onClose={closePopups}

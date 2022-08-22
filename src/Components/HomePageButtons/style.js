@@ -61,7 +61,7 @@ export const NavLink = styled(Button)`
   display: flex;
   flex-direction: column;
   font-family: ${({theme}) => theme.fonts.regular};
-  font-size: ${({theme}) => theme.fontSizes.medium};
+  font-size: ${({theme}) => theme.fontSizes.small};
   @media (min-width: 768px) {
     margin: 0 10px;
   }
