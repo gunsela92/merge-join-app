@@ -53,9 +53,6 @@ export const NewsContainer = styled.div`
   height: 200px;
   width: 100%;
   position: relative;
-  display: flex;
-  justify-content: center;
-  text-align: center;
   font-family: ${({theme}) => theme.fonts.regular};
   padding: 10px;
   box-sizing: border-box;
